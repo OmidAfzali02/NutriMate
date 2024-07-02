@@ -50,3 +50,18 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.name 
+
+
+class Meal(models.Model):
+    person = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
+    ingredient_list = models.JSONField(default=list, verbose_name='Ingrediants you have eaten in g')
+    total_calorie = models.FloatField(default=1.0, blank=True)
+    total_protein = models.FloatField(default=1.0, blank=True)
+    total_carbs = models.FloatField(default=1.0, blank=True)
+    total_fat = models.FloatField(default=1.0, blank=True)
+    total_sugar = models.FloatField(default=1.0, blank=True)
+    total_creatine = models.FloatField(default=1.0, blank=True)
+    total_glutamine = models.FloatField(default=1.0, blank=True)
+
+    def __str__(self):
+        return str(self.person.email) + ', ' + str(self.id)
