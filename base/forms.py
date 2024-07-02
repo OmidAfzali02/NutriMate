@@ -8,3 +8,4 @@ class RegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('email', 'name', 'phone', 'password1', 'password2', )
+
