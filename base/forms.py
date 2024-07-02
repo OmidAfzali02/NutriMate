@@ -7,5 +7,5 @@ class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=False, widget=forms.EmailInput(attrs={'class': 'form-control'}))
     class Meta:
         model = User
-        fields = ('email', 'name', 'phone', 'password1', 'password2', )
+        fields = ('email', 'name', 'password1', 'password2', )
 
