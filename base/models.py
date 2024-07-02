@@ -47,3 +47,6 @@ class Ingredient(models.Model):
     sugar = models.FloatField(default=0.0, blank=True, verbose_name="Sugar in 100g (optional)")
     creatine = models.FloatField(default=0.0, blank=True, verbose_name="Creatine in 100g (optional)")
     glutamine = models.FloatField(default=0.0, blank=True, verbose_name="Glutamine in 100g (optional)")
+
+    def __str__(self):
+        return self.name 
