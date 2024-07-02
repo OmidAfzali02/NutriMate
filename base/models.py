@@ -41,12 +41,12 @@ class Ingredient(models.Model):
     description = models.CharField(max_length=100, blank=True, default=str)
     icon = models.ImageField(blank=True, null=True, upload_to='image/ingrediants')
     calorie = models.FloatField(default=1.0, verbose_name="Calorie in 100g")
-    protein = models.FloatField(default=1.0, verbose_name="Protein in 100g")
-    carbohydrates = models.FloatField(default=1.0, verbose_name="Carbohydrates in 100g")
-    fat = models.FloatField(default=0.0, blank=True, verbose_name="Fat in 100g (optional)")
-    sugar = models.FloatField(default=0.0, blank=True, verbose_name="Sugar in 100g (optional)")
-    creatine = models.FloatField(default=0.0, blank=True, verbose_name="Creatine in 100g (optional)")
-    glutamine = models.FloatField(default=0.0, blank=True, verbose_name="Glutamine in 100g (optional)")
+    protein = models.FloatField(default=1.0, verbose_name="Protein (g) in 100g")
+    carbohydrates = models.FloatField(default=1.0, verbose_name="Carbohydrates (g) in 100g")
+    fat = models.FloatField(default=0.0, blank=True, verbose_name="Fat (g) in 100g (optional)")
+    sugar = models.FloatField(default=0.0, blank=True, verbose_name="Sugar (g) in 100g (optional)")
+    creatine = models.FloatField(default=0.0, blank=True, verbose_name="Creatine (g) in 100g (optional)")
+    glutamine = models.FloatField(default=0.0, blank=True, verbose_name="Glutamine (g) in 100g (optional)")
 
     def __str__(self):
         return self.name 
