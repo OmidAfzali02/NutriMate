@@ -5,7 +5,7 @@ from django.contrib import messages # to show flash messages
 from django.contrib.auth import authenticate, login, logout
 
 from .forms import RegistrationForm
-from .models import User
+from .models import User, Meal
 
 from datetime import datetime
 
@@ -62,3 +62,24 @@ def userRegister(request):
 
     context = {'page': page, 'form': form}
     return render(request, 'login.html', context)
+
+@login_required(login_url="/login") 
+def food_calorie_view(request):
+    user = request.user
+    food_data = {}
+    if request.method == 'POST':
+        food_names = request.POST.getlist('food_name[]')
+        food_amounts = request.POST.getlist('food_amount[]')
+
+        for name, amount in zip(food_names, food_amounts):
+            if name and amount:
+                food_data[name.strip()] = amount.strip()
+
+    
+    new_meal = Meal.objects.create(
+        person = user,
+        ingredient_list = food_data
+    )
+    new_meal.save()
+
+    return render(request, 'calculate.html', {'food_data': food_data})

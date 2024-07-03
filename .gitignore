@@ -271,3 +271,4 @@ pyrightconfig.json
 postmanager/__pycache__/settings.cpython-310.pyc
 *.pyc
 *.png
+/NutriMate/__pycache__

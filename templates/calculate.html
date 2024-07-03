@@ -1,0 +1,35 @@
+{% include 'navbar.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Calorie Calculator</title>
+    <script>
+        function addInputFields() {
+            const container = document.getElementById('food-inputs');
+            const inputField = document.createElement('div');
+            inputField.innerHTML = `
+                <input type="text" name="food_name[]" placeholder="Food name">
+                <input type="number" name="food_amount[]" placeholder="Amount (grams)">
+            `;
+            container.appendChild(inputField);
+        }
+    </script>
+</head>
+<body>
+    <h1>Food Calorie Calculator</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div id="food-inputs">
+            <!-- Initial input fields -->
+            <input type="text" name="food_name[]" placeholder="Food name">
+            <input type="number" name="food_amount[]" placeholder="Amount (grams)">
+        </div>
+        <button type="button" onclick="addInputFields()">Add Another Food</button>
+        <button type="submit">Calculate Calories</button>
+    </form>
+</body>
+</html>
+
