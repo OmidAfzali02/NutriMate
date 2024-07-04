@@ -76,10 +76,10 @@ def food_calorie_view(request):
                 food_data[name.strip()] = amount.strip()
 
     
-    new_meal = Meal.objects.create(
-        person = user,
-        ingredient_list = food_data
-    )
-    new_meal.save()
+        new_meal = Meal.objects.create(
+            person = user,
+            ingredient_list = food_data
+        )
+        new_meal.save()
 
     return render(request, 'calculate.html', {'food_data': food_data})

@@ -19,17 +19,21 @@
     </script>
 </head>
 <body>
-    <h1>Food Calorie Calculator</h1>
-    <form method="post">
-        {% csrf_token %}
-        <div id="food-inputs">
-            <!-- Initial input fields -->
-            <input type="text" name="food_name[]" placeholder="Food name">
-            <input type="number" name="food_amount[]" placeholder="Amount (grams)">
-        </div>
-        <button type="button" onclick="addInputFields()">Add Another Food</button>
-        <button type="submit">Calculate Calories</button>
-    </form>
+    <div>
+        <h1>Food Calorie Calculator</h1>
+    </div>
+    <div class="calculator-form">
+        <form method="post">
+            {% csrf_token %}
+            <div id="food-inputs">
+                <!-- Initial input fields -->
+                <input type="text" name="food_name[]" placeholder="Food name">
+                <input type="number" name="food_amount[]" placeholder="Amount (grams)">
+            </div>
+            <button type="button" onclick="addInputFields()">Add Another Food</button>
+            <button type="submit">Calculate Calories</button>
+        </form>
+    </div>
 </body>
 </html>
 
