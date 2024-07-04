@@ -11,7 +11,11 @@
             const container = document.getElementById('food-inputs');
             const inputField = document.createElement('div');
             inputField.innerHTML = `
-                <input type="text" name="food_name[]" placeholder="Food name">
+                <select name="food_name[]">
+                    {% for ingredient in ingredients %}
+                        <option value="{{ ingredient.name }}">{{ ingredient.name }}</option>
+                    {% endfor %}
+                </select>
                 <input type="number" name="food_amount[]" placeholder="Amount (grams)">
             `;
             container.appendChild(inputField);
@@ -30,8 +34,20 @@
             {% csrf_token %}
             <div id="food-inputs">
                 <!-- Initial input fields -->
-                <input type="text" name="food_name[]" placeholder="Food name">
+                <select name="food_name[]">
+                    {% for ingredient in ingredients %}
+                        <option value="{{ ingredient.name }}">{{ ingredient.name }}</option>
+                    {% endfor %}
+                </select>
                 <input type="number" name="food_amount[]" placeholder="Amount (grams)">
+                <select name="meal_type">
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="dinner">Dinner</option>
+                    <option value="snack">Snack</option>
+                    <option value="after_workout">After Workout</option>
+                    <option value="preworkout">Pre-workout</option>
+                </select>
             </div>
             <button type="button" onclick="addInputFields()">Add Another Food</button>
             <button type="submit">Calculate Calories</button>
