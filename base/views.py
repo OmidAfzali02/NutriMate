@@ -8,6 +8,7 @@ from .forms import RegistrationForm
 from .models import User, Meal
 
 from datetime import datetime
+from .nutri_calc import nutri_calc
 
 
 def login_page(request):
@@ -75,11 +76,19 @@ def food_calorie_view(request):
         for name, amount in zip(food_names, food_amounts):
             if name and amount:
                 food_data[name.strip()] = amount.strip()
-
+        
+        totals = nutri_calc(food_data)
     
         new_meal = Meal.objects.create(
             person = user,
-            ingredient_list = food_data
+            ingredient_list = food_data,
+            total_calorie = totals('total_calorie'),
+            total_protein = totals('total_protein'),
+            total_carbs = totals('total_carbohydrates'),
+            total_fat = totals('total_fat'),
+            total_sugar = totals('total_sugar'),
+            total_creatine = totals('total_creatine'),
+            total_glutamine = totals('total_glutamine')
         )
         new_meal.save()
 
