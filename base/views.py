@@ -9,12 +9,6 @@ from .models import User, Meal
 
 from datetime import datetime
 
-# Create your views here.
-
-def home(request):
-    context = {}
-    return render(request, 'home.html', context)
-
 
 def login_page(request):
     page = 'login'
