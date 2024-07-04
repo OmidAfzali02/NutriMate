@@ -57,6 +57,13 @@ def userRegister(request):
     context = {'page': page, 'form': form}
     return render(request, 'login.html', context)
 
+
+@login_required(login_url="/login")
+def userProfile(request, pk):
+    user = User.objects.get(id=pk)
+    context = {"user": user}
+    return render(request, 'profile.html', context)
+
 @login_required(login_url="/login") 
 def food_calorie_view(request):
     user = request.user
