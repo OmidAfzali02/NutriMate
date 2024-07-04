@@ -52,9 +52,14 @@ class Ingredient(models.Model):
         return self.name 
 
 
+meal_choice = (('breakfast', 'breakfast'), ('lunch', 'lunch'), ('dinner', 'dinner'), ('snack', 'snack'), ('after workout', 'after workout'), ('preworkout', 'preworkout'))
 class Meal(models.Model):
     person = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
     ingredient_list = models.JSONField(default=list, verbose_name='Ingrediants you have eaten in g')
+    kind = models.CharField(max_length=20, blank=True, default=str, choices=meal_choice)
+    created = models.DateTimeField(auto_now_add=True) 
+    updated = models.DateTimeField(auto_now=True) 
+
     total_calorie = models.FloatField(default=1.0, blank=True)
     total_protein = models.FloatField(default=1.0, blank=True)
     total_carbs = models.FloatField(default=1.0, blank=True)
