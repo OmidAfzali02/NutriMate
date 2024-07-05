@@ -13,5 +13,6 @@ urlpatterns = [
     path('profile/<int:pk>/', userProfile, name='profile'),
     
     path('', food_calorie_view, name='calculate'),
+    path('meal/<int:pk>/', meal_view, name='meal'),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

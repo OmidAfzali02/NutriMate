@@ -106,5 +106,12 @@ def food_calorie_view(request):
             total_glutamine = totals.get('total_glutamine')
         )
         new_meal.save()
+        meal_id = new_meal.id
+        return redirect('/meal/' + str(meal_id)+ '/')
 
     return render(request, 'calculate.html', {'ingredients': ingredients})
+
+def meal_view(request, pk):
+    meal = Meal.objects.get(id=pk)
+    context = {'meal':meal}
+    return render(request, 'meal.html', context)

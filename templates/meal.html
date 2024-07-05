@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal {{meal.id}}</title>
+</head>
+<body>
+    {% if request.user == meal.person %}
+    <div class="navbar">
+        {% include 'navbar.html' %}
+    </div>
+    <div class="date">
+        <h3>{{meal.created}}</h3>
+    </div>
+    <div class="meal_data">
+        <p>kind: {{meal.kind}}</p>
+        <p>ingrediants: {{meal.ingredient_list}}</p>
+    </div>
+    <div class="totals">
+        <table>
+            <tr>
+              <th>Nutrition</th>
+              <th>Amount</th>
+            </tr>
+            <tr>
+              <td>Total Calorie</td>
+              <td>{{meal.total_calorie}}</td>
+            </tr>
+            <tr>
+              <td>Total Protein</td>
+              <td>{{meal.total_protein}}</td>
+            </tr>
+            <tr>
+                <td>Total Carbohydrate</td>
+                <td>{{meal.total_carbs}}</td>
+            </tr>
+            <tr>
+                <td>Total Fat</td>
+                <td>{{meal.total_fat}}</td>
+            </tr>
+            <tr>
+                <td>Total Sugar</td>
+                <td>{{meal.total_sugar}}</td>
+            </tr>
+            <tr>
+                <td>Total Creatine</td>
+                <td>{{meal.total_creatine}}</td>
+            </tr>
+            <tr>
+                <td>Total Glutamine</td>
+                <td>{{meal.total_glutamine}}</td>
+            </tr>
+          </table>
+    </div>
+    {% endif %}
+</body>
+</html>
