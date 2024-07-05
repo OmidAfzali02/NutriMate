@@ -8,7 +8,7 @@ from .forms import RegistrationForm
 from .models import User, Meal, Ingredient
 
 from datetime import datetime
-from .nutri_calc import nutri_calc
+from .calculator import nutritional_calc
 
 
 def login_page(request):
@@ -70,6 +70,7 @@ def food_calorie_view(request):
     ingredients = Ingredient.objects.all()
     user = request.user
     food_data = {}
+    ings = {}
     if request.method == 'POST':
         food_names = request.POST.getlist('food_name[]')
         food_amounts = request.POST.getlist('food_amount[]')
@@ -78,9 +79,19 @@ def food_calorie_view(request):
         for name, amount in zip(food_names, food_amounts):
             if name and amount:
                 food_data[name.strip()] = amount.strip()
+                ing = Ingredient.objects.filter(name=name).first()
+                calorie = ing.calorie
+                protein = ing.protein
+                carbohydrates = ing.carbohydrates
+                fat = ing.fat
+                sugar = ing.sugar
+                creatine = ing.creatine
+                glutamine = ing.glutamine
+                ourData = {name: {'calorie':calorie, 'protein':protein, 'carbohydrates': carbohydrates, 'fat':fat, 'sugar':sugar,'creatine':creatine, 'glutamine':glutamine}}
+                ings.update(ourData)
         
         if food_data is not {}:
-            totals = nutri_calc(food_data)
+            totals = nutritional_calc(food_data, ings)
     
         new_meal = Meal.objects.create(
             person = user,
